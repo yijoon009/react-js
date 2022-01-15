@@ -14,10 +14,15 @@ function App() {
     console.log('CALL THE API....');
   }, []);
   useEffect(() => {
-    if (keyword !== '' && keyword.length > 4) {
-      console.log('SEARCH FOR', keyword);
-    }
+    console.log('i run when "keyword" changes.');
   }, [keyword]);
+  useEffect(() => {
+    console.log('i run when "counter" changes.');
+  }, [counter]);
+  // 아래는 keyword 나 counter 둘중에 하나라도 변경되면 실행되는 코드
+  useEffect(() => {
+    console.log('i run when keyword and counter changes');
+  }, [keyword, counter]);
   return (
     <div>
       <input
