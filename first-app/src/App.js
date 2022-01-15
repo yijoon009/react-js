@@ -1,38 +1,19 @@
 import { useState, useEffect } from 'react';
 
-function App() {
-  const [counter, setValue] = useState(0);
-  const [keyword, setKeyword] = useState('');
-  const onClick = () => setValue((prev) => prev + 1);
-  const onChange = (e) => setKeyword(e.target.value);
-  console.log('i run all the time');
-  // const iRunOnlyOnce = () => {
-  //   console.log('i run only once.');
-  // };
-  // useEffect(iRunOnlyOnce, []);
+function Hello() {
   useEffect(() => {
-    console.log('CALL THE API....');
+    console.log("I'm here");
   }, []);
-  useEffect(() => {
-    console.log('i run when "keyword" changes.');
-  }, [keyword]);
-  useEffect(() => {
-    console.log('i run when "counter" changes.');
-  }, [counter]);
-  // 아래는 keyword 나 counter 둘중에 하나라도 변경되면 실행되는 코드
-  useEffect(() => {
-    console.log('i run when keyword and counter changes');
-  }, [keyword, counter]);
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type="text"
-        placeholder="Search here..."
-      />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click me!</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? 'Hide' : 'Show'}</button>
     </div>
   );
 }
